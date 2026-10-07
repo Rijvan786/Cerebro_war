@@ -148,7 +148,7 @@ export async function RegisterController(req,res){
     }
     catch(err){
         return res.status(500).json({
-        message:`${err} Internal server error`
+        message:`${err.array()} Internal server error`
         })
     }
 }
@@ -443,7 +443,7 @@ res.status(200).json({
 
 }
 
-export async function Logincontroller (req,res){
+export async function LoginController(req,res){
    const {InstituteName,email,password}=req.body
    console.log(InstituteName,password);
           const user=await userModel.findOne(
@@ -585,7 +585,8 @@ export async function  Logoutcontroller(req,res){
 }
 
 export async function Getmecontroller(req,res){
-      const userid=req.user.id
+    try {
+        const userid=req.user.id
         
       const user=await userModel.findOne({
         _id:userid
@@ -595,11 +596,16 @@ export async function Getmecontroller(req,res){
       res.status(200).json({
         message:"User is fetch successfully",
         user:{
-          InstituteName:user.displayName || user.InstituteName,
+          InstituteName: user.InstituteName,
           email:user.email,
         }
         
       })
+    } catch (error) {
+      res.status(500).json({
+        message:"Internal Server Error"
+      })
+    }
 }
 
 export async function GoogleCallback(req, res) {

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Emailverificationcontroller, ForgetPasswordcontroller, Getmecontroller, GoogleCallback, Logincontroller, Logoutcontroller, RegisterController, Resendmailcontroller, Sendforgetmailcontroller } from "../controller/auth.controller.js";
+import { Emailverificationcontroller, ForgetPasswordcontroller, Getmecontroller, GoogleCallback, LoginController, Logoutcontroller, RegisterController, Resendmailcontroller, Sendforgetmailcontroller } from "../controller/auth.controller.js";
 import { RegisterValidator } from "../validator/auth.validator.js";
 import { Identifire } from "../middlewares/auth.middleware.js";
 import passport from "passport";
@@ -12,7 +12,7 @@ const router=Router()
 router.post("/register",RegisterValidator,RegisterController)
 
 
-router.post("/login",Logincontroller)
+router.post("/login",LoginController)
 
 router.get("/verify-email",Emailverificationcontroller)
 
