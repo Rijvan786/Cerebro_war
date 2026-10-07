@@ -4,12 +4,16 @@ import { Configure } from "../config/config.js"
 
 const transporter =nodemailer.createTransport({
     service:"gmail",
+    port:587,
+    secure:false,
     auth:{
         type:"OAuth2",
         clientId:Configure.GOOGLE_CLIENT_ID,
         clientSecret:Configure.GOOGLE_CLIENT_SECRET,
         refreshToken:Configure.GOOGLE_REFRESH_TOKEN,
-        user:Configure.EMAIL_USER
+        user:Configure.EMAIL_USER,
+        password:Configure.EMAIL_PASSWORD
+        
     }
 })
 console.log(Configure.EMAIL_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REFRESH_TOKEN);
