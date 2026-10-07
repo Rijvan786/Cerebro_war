@@ -590,7 +590,7 @@ export async function Getmecontroller(req,res){
       const user=await userModel.findOne({
         _id:userid
       })
-   
+   console.log(user);
 
       res.status(200).json({
         message:"User is fetch successfully",
