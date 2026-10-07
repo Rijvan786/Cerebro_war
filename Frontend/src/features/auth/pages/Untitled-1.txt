@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Math Tug of War - Loading</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#dae3f7",
+                        "surface": "#0b1422",
+                        "inverse-surface": "#dae3f7",
+                        "on-tertiary-fixed": "#2a1800",
+                        "surface-dim": "#0b1422",
+                        "on-secondary-container": "#abb9d2",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "outline-variant": "#3c494c",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#006877",
+                        "on-surface-variant": "#bbc9cd",
+                        "secondary-fixed": "#d5e3fd",
+                        "on-surface": "#dae3f7",
+                        "surface-container-lowest": "#060e1c",
+                        "on-secondary": "#233144",
+                        "surface-tint": "#2fd9f4",
+                        "primary-container": "#22d3ee",
+                        "on-tertiary-fixed-variant": "#643f00",
+                        "tertiary-container": "#ffb13b",
+                        "on-primary-container": "#005763",
+                        "primary-fixed-dim": "#2fd9f4",
+                        "on-primary-fixed-variant": "#004e5a",
+                        "inverse-on-surface": "#283140",
+                        "surface-container-high": "#222a39",
+                        "surface-bright": "#313949",
+                        "on-primary-fixed": "#001f25",
+                        "error-container": "#93000a",
+                        "background": "#0b1422",
+                        "secondary-container": "#3c4a5e",
+                        "surface-container": "#17202e",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "on-tertiary": "#462b00",
+                        "secondary": "#b9c7e0",
+                        "on-error": "#690005",
+                        "outline": "#859397",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "surface-container-highest": "#2c3544",
+                        "surface-container-low": "#131c2a",
+                        "tertiary-fixed-dim": "#ffb957",
+                        "primary-fixed": "#a2eeff",
+                        "on-tertiary-container": "#6e4600",
+                        "surface-variant": "#2c3544",
+                        "primary": "#8aebff",
+                        "tertiary": "#ffd6a3",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffddb5",
+                        "on-primary": "#00363e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "container-max": "1200px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Space Grotesk"],
+                        "mono-label": ["Space Grotesk"],
+                        "math-display": ["Space Grotesk"],
+                        "h2": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "h1": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+
+"h3": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "mono-label": ["14px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "math-display": ["64px", { "lineHeight": "1", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h1": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    },
+                    "animation": {
+                        'shimmer': 'shimmer 2s ease-in-out infinite',
+                    },
+                    "keyframes": {
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .skeleton-bone {
+            background: linear-gradient(90deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+            background-size: 1000px 100%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- Top Navigation Shell (Suppressed visually to prioritize canvas, but present structurally) -->
+<header class="docked full-width top-0 border-b border-white/10 bg-slate-900/60 backdrop-blur-xl flex justify-between items-center px-8 py-4 w-full z-50">
+<div class="text-xl font-bold tracking-widest text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)] font-['Space_Grotesk'] tracking-tighter uppercase">MATH TUG OF WAR</div>
+<nav class="hidden md:flex gap-6 items-center">
+<!-- Navigation links are inactive during loading to prevent interaction -->
+<span class="text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all font-['Space_Grotesk'] tracking-tighter uppercase cursor-not-allowed opacity-50">Arena</span>
+<span class="text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all font-['Space_Grotesk'] tracking-tighter uppercase cursor-not-allowed opacity-50">Training</span>
+<span class="text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all font-['Space_Grotesk'] tracking-tighter uppercase cursor-not-allowed opacity-50">Rankings</span>
+<span class="text-slate-400 hover:text-slate-200 transition-colors hover:bg-white/5 transition-all font-['Space_Grotesk'] tracking-tighter uppercase cursor-not-allowed opacity-50">Intel</span>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 opacity-50">account_balance_wallet</span>
+<span class="material-symbols-outlined text-slate-400 opacity-50">settings</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-gutter relative z-10 bg-gradient-to-b from-[#08111f] to-surface-container-lowest">
+<!-- Large Centered Glassmorphism Card -->
+<div class="w-full max-w-[1000px] bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-xl p-lg grid grid-cols-1 md:grid-cols-12 gap-xl shadow-2xl relative overflow-hidden">
+<!-- Etched border reflection effect -->
+<div class="absolute inset-0 border-t border-l border-white/5 rounded-xl pointer-events-none"></div>
+<!-- Left Column (approx 1/3) -->
+<div class="md:col-span-4 flex flex-col gap-lg">
+<!-- Skeleton avatar -->
+<div class="w-32 h-32 rounded-full skeleton-bone animate-shimmer mx-auto md:mx-0 shadow-inner"></div>
+<!-- Title lines -->
+<div class="flex flex-col gap-sm mt-4">
+<div class="h-6 w-3/4 skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+<div class="h-4 w-1/2 skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+</div>
+<!-- Body lines -->
+<div class="flex flex-col gap-xs mt-2">
+<div class="h-3 w-full skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+<div class="h-3 w-5/6 skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+<div class="h-3 w-4/6 skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+</div>
+<!-- Two small stat cards below -->
+<div class="grid grid-cols-2 gap-sm mt-auto pt-lg">
+<div class="h-20 skeleton-bone animate-shimmer rounded-lg border border-white/5"></div>
+
+<div class="h-20 skeleton-bone animate-shimmer rounded-lg border border-white/5"></div>
+</div>
+</div>
+<!-- Right Column (approx 2/3) -->
+<div class="md:col-span-8 flex flex-col gap-lg">
+<!-- Thin top bar bone -->
+<div class="h-10 w-full skeleton-bone animate-shimmer rounded-lg mb-sm border border-white/5"></div>
+<!-- One large square block -->
+<div class="flex-grow min-h-[250px] skeleton-bone animate-shimmer rounded-xl border border-white/5 relative overflow-hidden">
+<!-- Subtle inner scanline effect -->
+<div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.02)_50%,transparent_100%)] bg-[length:100%_4px]"></div>
+</div>
+<!-- Row of three mini tiles -->
+<div class="grid grid-cols-3 gap-md">
+<div class="h-16 skeleton-bone animate-shimmer rounded-lg border border-white/5"></div>
+<div class="h-16 skeleton-bone animate-shimmer rounded-lg border border-white/5"></div>
+<div class="h-16 skeleton-bone animate-shimmer rounded-lg border border-white/5"></div>
+</div>
+<!-- Four text lines -->
+<div class="flex flex-col gap-sm mt-sm">
+<div class="h-3 w-full skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+<div class="h-3 w-11/12 skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+<div class="h-3 w-full skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+<div class="h-3 w-4/5 skeleton-bone animate-shimmer rounded-DEFAULT"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Status Bar -->
+<footer class="fixed bottom-0 w-full flex justify-between px-6 items-center z-50 py-2 border-t border-cyan-500/20 bg-slate-900/90 shadow-[0_-4px_12px_rgba(34,211,238,0.1)]">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]"></div>
+<span class="text-cyan-400 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase">SYSTEM STATUS: OPTIMIZED // PREPARING WORKSPACE...</span>
+</div>
+<div class="hidden md:flex gap-4">
+<span class="text-slate-600 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase cursor-not-allowed">Terms of Engagement</span>
+<span class="text-slate-600 font-['Space_Grotesk'] text-[10px] tracking-widest uppercase cursor-not-allowed">Privacy Protocol</span>
+</div>
+</footer>
+</body></html>

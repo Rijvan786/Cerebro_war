@@ -1,0 +1,60 @@
+import mongoose from "mongoose";
+import  bcrypt from "bcryptjs"
+
+
+const userSchema=new mongoose.Schema({
+    InstituteName:{
+        type:String,
+        required:true,
+    },
+    email:{
+        type:String,
+        unique:true,
+        required:true
+    },
+    contact:{
+        type:String,
+        required:false
+    },
+    countryCode:{
+         type:String,
+    },
+    password:{
+          type:String,
+        select:false,
+       required:function(){
+          return !this.googleId
+       }
+    },
+    role:{
+        type:String,
+        enum:["primary","middle","secondary","higher_secondary","collage"],
+        
+    },
+    
+googleId:{
+        type:String
+    },
+    verified:{
+        type:Boolean,
+        default:false
+    }
+})
+
+
+userSchema.pre("save",async function(){
+ 
+    if(!this.isModified("password")) return;
+    const hash=await bcrypt.hash(this.password,10)
+    this.password=hash
+
+})
+
+
+userSchema.methods.comparePassword=async function (password){
+      return await bcrypt.compare(password,this.password)
+}
+
+const userModel=mongoose.model("user",userSchema)
+
+export default userModel
