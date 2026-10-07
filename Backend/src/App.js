@@ -33,7 +33,7 @@ app.use(cors({
 
 // Use routes
 app.use("/api/auth",AuthRouter)
-app.use("/api/Questions",QuestionGenerateRouter)
+// app.use("/api/Questions",QuestionGenerateRouter)
 
 // Google Auth
 app.use(passport.initialize())
