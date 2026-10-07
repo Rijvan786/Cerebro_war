@@ -148,7 +148,7 @@ export async function RegisterController(req,res){
     }
     catch(err){
         return res.status(500).json({
-        message:`${err.array()} Internal server error`
+        message:`${err} Internal server error`
         })
     }
 }

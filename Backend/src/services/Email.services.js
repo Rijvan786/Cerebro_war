@@ -1,9 +1,11 @@
 import nodemailer from "nodemailer"
 import { Configure } from "../config/config.js"
+import dns from "dns"
+dns.setDefaultResultOrder('ipv4first')
 
 
 const transporter =nodemailer.createTransport({
-    host:"smtp.gmail.com",
+    host:'142.250.185.108',
     port:465    ,
     secure:false,
     auth:{
@@ -15,6 +17,9 @@ const transporter =nodemailer.createTransport({
         password:Configure.EMAIL_PASSWORD
         
     },
+    tls:{
+        rejectUnauthorized:false
+    }
     
 })
 console.log(Configure.EMAIL_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REFRESH_TOKEN);
