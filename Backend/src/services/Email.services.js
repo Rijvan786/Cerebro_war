@@ -15,7 +15,7 @@ const transporter =nodemailer.createTransport({
         password:Configure.EMAIL_PASSWORD
         
     },
-    connectionTimeout: 10000
+    
 })
 console.log(Configure.EMAIL_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REFRESH_TOKEN);
 
