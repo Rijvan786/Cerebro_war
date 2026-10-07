@@ -3,8 +3,8 @@ import { Configure } from "../config/config.js"
 
 
 const transporter =nodemailer.createTransport({
-    service:"gmail",
-    port:587,
+    host:"smtp.gmail.com",
+    port:465    ,
     secure:false,
     auth:{
         type:"OAuth2",
