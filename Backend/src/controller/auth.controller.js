@@ -586,7 +586,7 @@ export async function  Logoutcontroller(req,res){
 
 export async function Getmecontroller(req,res){
       const userid=req.user.id
-
+        
       const user=await userModel.findOne({
         _id:userid
       })
@@ -595,7 +595,7 @@ export async function Getmecontroller(req,res){
       res.status(200).json({
         message:"User is fetch successfully",
         user:{
-          InstituteName:user.InstituteName,
+          InstituteName:user.displayName || user.InstituteName,
           email:user.email,
         }
         
@@ -684,7 +684,7 @@ export async function GoogleCallback(req, res) {
     }
 
     const token = jwt.sign(
-      { id: user._id, email: user.email, InstituteName: user.InstituteName, role: user.role },
+      { id: user._id, email: user.email, InstituteName:displayName, role: user.role },
       Configure.JWT_SECRET,
       { expiresIn: "7d" }
     )

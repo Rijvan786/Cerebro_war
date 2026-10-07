@@ -21,7 +21,7 @@ console.log(Configure.EMAIL_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REF
 transporter.verify().then(()=>{
     console.log("Transporter is Ready to send mail");
 }).catch((err)=>{
-      console.log("Error occur in Email Transporter");
+      console.log("Error occur in Email Transporter",err);
 })
 
 
