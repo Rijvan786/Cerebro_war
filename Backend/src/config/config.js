@@ -53,8 +53,6 @@ export const  Configure={
     GOOGLE_CLIENT_SECRET,
     EMAIL_USER,
     GOOGLE_REFRESH_TOKEN,
-    
-    REDIS_PASSWORD,
     GOOGLE2_CLIENT_ID,
     GOOGLE2_CLIENT_SECRET,
     NODE_ENV:NODE_ENV || "development"
