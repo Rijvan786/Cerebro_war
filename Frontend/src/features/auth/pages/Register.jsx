@@ -51,7 +51,7 @@ const Register = () => {
     } finally { setLoading(false) }
   }
    async function handleGoogleLogin(){
-    window.location.href="http://localhost:3000/api/auth/google";
+    window.location.href="https://cerebro-war.onrender.com/api/auth/google";
    }
   if (Loading) return <Loader />
 
