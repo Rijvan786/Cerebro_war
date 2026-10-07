@@ -5,10 +5,7 @@ dotenv.config()
 const {
     MONGO_URI,BACKEND_PORT,JWT_SECRET,EMAIL_USER,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,
 
-    GOOGLE_REFRESH_TOKEN
-    ,
-    // TAVILY_API_KEY,MISTRAL_API_KEY,OPENAI_KEY ,REDIS_HOST,REDIS_PORT,REDIS_PASSWORD,
-    GOOGLE2_CLIENT_ID,GOOGLE2_CLIENT_SECRET,NODE_ENV    
+    GOOGLE_REFRESH_TOKEN,GOOGLE2_CLIENT_ID,GOOGLE2_CLIENT_SECRET,NODE_ENV    
     
 }=process.env;
     
@@ -37,31 +34,7 @@ if(!GOOGLE_REFRESH_TOKEN){
     throw new Error("GOOGLE_REFRESH_TOKEN is not defined in environment variables")
 }
 
-// if(!TAVILY_API_KEY){
-//     throw new Error("TAVILY_API_KEY is not defined in environment variables")
-// }
 
-// if(!MISTRAL_API_KEY){
-//     throw new Error("MISTRAL_API_KEY is not defined in environment variables")
-
-// }
-
-// if(!OPENAI_KEY){
-//     throw new Error("OPENAI_KEY is not defined in environment variables")
-
-// }
-// if(!REDIS_HOST){
-//     throw new Error("REDIS_HOST is not defined in environment variables")
-
-// }
-// if(!REDIS_PORT){
-//     throw new Error("REDIS_PORT is not defined in environment variables")
-
-// }
-// if(!REDIS_PASSWORD){
-//     throw new Error("REDIS_PASSWORD is not defined in environment variables")
-
-// }
 if(!GOOGLE2_CLIENT_ID){
     throw new Error("GOOGLE_CLIENT_ID is not defined in environment variables")
 }
@@ -80,11 +53,7 @@ export const  Configure={
     GOOGLE_CLIENT_SECRET,
     EMAIL_USER,
     GOOGLE_REFRESH_TOKEN,
-    // TAVILY_API_KEY,
-    // MISTRAL_API_KEY,
-    // OPENAI_KEY,
-    // REDIS_HOST,
-    // REDIS_PORT,
+    
     REDIS_PASSWORD,
     GOOGLE2_CLIENT_ID,
     GOOGLE2_CLIENT_SECRET,
