@@ -5,9 +5,7 @@ dns.setDefaultResultOrder('ipv4first')
 
 
 const transporter =nodemailer.createTransport({
-    host:'142.250.185.108',
-    port:465    ,
-    secure:false,
+   service:"gmail",
     auth:{
         type:"OAuth2",
         clientId:Configure.GOOGLE_CLIENT_ID,
