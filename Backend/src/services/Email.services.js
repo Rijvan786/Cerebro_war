@@ -5,19 +5,18 @@ dns.setDefaultResultOrder('ipv4first')
 
 
 const transporter =nodemailer.createTransport({
-   service:"gmail",
+    service:"://gmail",
+    port:587,
+    secure:false,
     auth:{
         type:"OAuth2",
         clientId:Configure.GOOGLE_CLIENT_ID,
         clientSecret:Configure.GOOGLE_CLIENT_SECRET,
         refreshToken:Configure.GOOGLE_REFRESH_TOKEN,
-        user:Configure.EMAIL_USER,
-        password:Configure.EMAIL_PASSWORD
-        
-    },
-    tls:{
-        rejectUnauthorized:false
-    }
+        user:Configure.SMTP_USER,
+        pass:Configure.SMTP_PASSWORD
+             },
+   
     
 })
 console.log(Configure.EMAIL_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REFRESH_TOKEN);
@@ -31,7 +30,7 @@ transporter.verify().then(()=>{
 
 export async function Sendmail({to,subject,text="",html}){
     const mailOption ={
-        from:Configure.EMAIL_USER,
+        from:Configure.SMTP_USER,
         to,
         subject,
         text,
