@@ -12,13 +12,13 @@ const transporter =nodemailer.createTransport({
         clientId:Configure.GOOGLE_CLIENT_ID,
         clientSecret:Configure.GOOGLE_CLIENT_SECRET,
         refreshToken:Configure.GOOGLE_REFRESH_TOKEN,
-        user:Configure.SMTP_USER,
-        pass:Configure.SMTP_PASSWORD
+        user:Configure.EMAIL_USER,
+        pass:Configure.EMAIL_PASSWORD
              },
    
     
 })
-console.log(Configure.SMTP_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REFRESH_TOKEN);
+console.log(Configure.EMAIL_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REFRESH_TOKEN);
 
 transporter.verify().then(()=>{
     console.log("Transporter is Ready to send mail");
@@ -29,7 +29,7 @@ transporter.verify().then(()=>{
 
 export async function Sendmail({to,subject,text="",html}){
     const mailOption ={
-        from:Configure.SMTP_USER,
+        from:Configure.EMAIL_USER,
         to,
         subject,
         text,

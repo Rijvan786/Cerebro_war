@@ -619,7 +619,7 @@ export async function GoogleCallback(req, res) {
 
     if (isNewUser) {
       user = await userModel.create({
-        googleId:      id,
+        googleId: id,
         InstituteName: displayName,
         email,
         photo,

@@ -3,13 +3,13 @@ dotenv.config()
 
 
 const {
-    MONGO_URI,BACKEND_PORT,JWT_SECRET,SMTP_USER,SMTP_PASSWORD,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,
+    MONGO_URI,BACKEND_PORT,JWT_SECRET,EMAIL_USER,EMAIL_PASSWORD,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,
 
     GOOGLE_REFRESH_TOKEN,GOOGLE2_CLIENT_ID,GOOGLE2_CLIENT_SECRET,NODE_ENV    
     
 }=process.env;
     
- 
+E
 if(!MONGO_URI){
     throw new Error("MONGO_URI is not defined in environment variables")
 }
@@ -26,14 +26,14 @@ if(!GOOGLE_CLIENT_SECRET){
     throw new Error("GOOGLE_CLIENT_SECRET is not defined in environment variables")
 }
 
-if(!SMTP_USER){
+if(!EMAIL_USER){
     throw new Error("EMAIL_USER is not defined in environment variables")
 }
 
 if(!GOOGLE_REFRESH_TOKEN){
     throw new Error("GOOGLE_REFRESH_TOKEN is not defined in environment variables")
 }
-if(!SMTP_PASSWORD){
+if(!EMAIL_PASSWORD){
     throw new Error("EMAIL_PASSWORD is not defined in environment variables")
 }
 
@@ -54,8 +54,8 @@ export const  Configure={
     JWT_SECRET:JWT_SECRET,
     GOOGLE_CLIENT_ID:GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET:GOOGLE_CLIENT_SECRET,
-    SMTP_USER:SMTP_USER,
-    SMTP_PASSWORD:SMTP_PASSWORD,
+    EMAIL_USER:EMAIL_USER,
+    EMAIL_PASSWORD:EMAIL_PASSWORD,
     GOOGLE_REFRESH_TOKEN:GOOGLE_REFRESH_TOKEN,
     GOOGLE2_CLIENT_ID:GOOGLE2_CLIENT_ID,
     GOOGLE2_CLIENT_SECRET:GOOGLE2_CLIENT_SECRET,
