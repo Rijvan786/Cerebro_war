@@ -51,7 +51,7 @@ const Register = () => {
     } finally { setLoading(false) }
   }
    async function handleGoogleLogin(){
-    window.location.href="https://cerebro-war.onrender.com/api/auth/google";
+    window.location.href="https://cerebrowar-production.up.railway.app/api/auth/google";
    }
   if (Loading) return <Loader />
 

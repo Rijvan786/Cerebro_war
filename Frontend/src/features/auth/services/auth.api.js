@@ -1,6 +1,6 @@
 import axios from "axios"
 const api=axios.create({
-    baseURL:"https://cerebro-war.onrender.com",
+    baseURL:"https://cerebrowar-production.up.railway.app/",
     withCredentials:true2
 })
 

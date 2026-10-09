@@ -39,7 +39,7 @@ app.use(passport.initialize())
 passport.use(new GoogleStrategy({
         clientID:Configure.GOOGLE2_CLIENT_ID,
         clientSecret:Configure.GOOGLE2_CLIENT_SECRET,
-        callbackURL:"https://cerebro-war.onrender.com/api/auth/google/callback"
+        callbackURL:"https://cerebrowar-production.up.railway.app/api/auth/google/callback"
 },(_,__,profile,done)=>{
         return done(null,profile)
 }))
