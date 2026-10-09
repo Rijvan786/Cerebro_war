@@ -168,157 +168,501 @@ export async function Emailverificationcontroller(req,res){
                     message:"user is not found"
                 })
              }
-             if(user.verified){
-                const html=`
-    <html>
-    <head>
-      <style>
-        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .container { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 500px; }
-        h1 { color: #28a745; margin-bottom: 20px; }
-        p { color: #555; line-height: 1.6; margin: 15px 0; }
-        .button { display: inline-block; margin: 10px 5px; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: all 0.3s; }
-        .login-btn { background-color: #007bff; color: white; }
-        .login-btn:hover { background-color: #0056b3; }
-        .dashboard-btn { background-color: #28a745; color: white; }
-        .dashboard-btn:hover { background-color: #1e7e34; }
-        .info { background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; margin: 20px 0; text-align: left; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <h1>✓ Already Verified</h1>
-        <p>Good news! Your email is already verified.</p>
-        <div class="info">
-          <p><strong>Email:</strong> ${user.email}</p>
-          <p><strong>Status:</strong> <span style="color: #28a745;">Verified</span></p>
-        </div>
-        <p>You can now log in to your account and start using our services.</p>
-        <div>
-          <a href="https://cerebrowar-production.up.railway.app/login" class="button login-btn">Go to Login</a>
-          
-        </div>
-        <p style="margin-top: 30px; color: #999; font-size: 12px;">Thank you for being a part of our community!</p>
-      </div>
-    </body>
-    </html>
-    `
+              if(user.verified){
+                const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Already Verified | Math-War</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #090d16;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.5) 0px, transparent 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      color: #f8fafc;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.15);
+      text-align: center;
+    }
+    .icon-wrapper {
+      width: 72px;
+      height: 72px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px auto;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+    }
+    .icon-wrapper svg { width: 36px; height: 36px; color: #10b981; }
+    h1 { font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .subtitle { color: #94a3b8; font-size: 15px; line-height: 1.5; margin-bottom: 24px; }
+    .info-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .info-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 4px; }
+    .info-value { font-size: 15px; font-weight: 600; color: #38bdf8; word-break: break-all; }
+    .badge { display: inline-block; padding: 4px 10px; background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 12px; font-weight: 600; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3); margin-top: 6px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px 24px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: #ffffff; text-decoration: none;
+      border-radius: 12px; font-weight: 600; font-size: 15px; transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); border: none; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
+    .footer-note { margin-top: 24px; color: #64748b; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon-wrapper">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+    <h1>Already Verified</h1>
+    <p class="subtitle">Good news! Your email address is already verified and your account is ready for action.</p>
+    <div class="info-card">
+      <div class="info-label">Verified Email</div>
+      <div class="info-value">${user.email}</div>
+      <span class="badge">✓ Verified Active</span>
+    </div>
+    <a href="https://cerebrowar-production.up.railway.app/login" class="btn">
+      Go to Login
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+    <p class="footer-note">Thank you for being part of the Math-War community!</p>
+  </div>
+</body>
+</html>`
 
-               return  res.send(html)
+               return res.send(html)
              }
 
              if(confirm == "true"){
                  user.verified=true
                  user.save()
 
-               const html=`
-    <html>
-    <head>
-      <style>
-        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .container { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 500px; }
-        h1 { color: #28a745; margin-bottom: 20px; }
-        p { color: #555; line-height: 1.6; margin: 15px 0; }
-        .button { display: inline-block; margin: 10px 5px; padding: 12px 30px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: all 0.3s; }
-        .button:hover { background-color: #0056b3; }
-        .success-icon { font-size: 50px; margin-bottom: 20px; animation: bounce 0.6s; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="success-icon">✓</div>
-        <h1>Email Verified Successfully!</h1>
-        <p>Congratulations! Your email has been successfully verified.</p>
-        <p>You can now log in to your account and start using our services.</p>
-        <a href="https://cerebrowar-production.up.railway.app/login" class="button">Go to Login</a>
-        <p style="margin-top: 30px; color: #999; font-size: 12px;">Thank you for being a part of our community!</p>
-      </div>
-    </body>
-    </html>
-    `
+               const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification Successful | Math-War</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #090d16;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.5) 0px, transparent 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      color: #f8fafc;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(16, 185, 129, 0.2);
+      text-align: center;
+    }
+    .icon-wrapper {
+      width: 72px;
+      height: 72px;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px auto;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.35);
+      animation: pulse 2s infinite ease-in-out;
+    }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .icon-wrapper svg { width: 38px; height: 38px; color: #34d399; }
+    h1 { font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .subtitle { color: #94a3b8; font-size: 15px; line-height: 1.5; margin-bottom: 28px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 16px 24px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none;
+      border-radius: 12px; font-weight: 600; font-size: 16px; transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4); border: none; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6); }
+    .footer-note { margin-top: 24px; color: #64748b; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon-wrapper">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+    <h1>Email Verified Successfully!</h1>
+    <p class="subtitle">Congratulations! Your email account has been verified. You can now log in and access all features.</p>
+    <a href="https://cerebrowar-production.up.railway.app/login" class="btn">
+      Go to Login
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+    <p class="footer-note">Welcome to Math-War!</p>
+  </div>
+</body>
+</html>`
                  return res.send(html)
                 
              }
-            const html=`
-  <html>
-  <head>
-    <style>
-      body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-      .container { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 500px; }
-      h1 { color: #667eea; margin-bottom: 20px; }
-      p { color: #555; line-height: 1.6; margin: 15px 0; }
-      .info-box { background: #f0f4ff; border-left: 4px solid #667eea; padding: 20px; margin: 20px 0; text-align: left; border-radius: 5px; }
-      .verify-btn { display: inline-block; margin-top: 20px; padding: 15px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px; transition: all 0.3s; cursor: pointer; border: none; }
-      .verify-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-      .steps { text-align: left; margin: 20px 0; }
-      .step { margin: 10px 0; padding: 10px; background: #f9f9f9; border-radius: 5px; }
-      .step-number { display: inline-block; width: 30px; height: 30px; background: #667eea; color: white; border-radius: 50%; text-align: center; line-height: 30px; margin-right: 10px; font-weight: bold; }
-      .email-display { font-weight: bold; color: #667eea; }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>🔐 Verify Your Email</h1>
-      <p>Let's verify your email address to complete your registration.</p>
-      
-      <div class="info-box">
-        <p><strong>Email to verify:</strong></p>
-        <p class="email-display">${user.email}</p>
-      </div>
-      
-      <div class="steps">
-        <div class="step">
-          <span class="step-number">1</span> Click the button below to verify your email
-        </div>
-        <div class="step">
-          <span class="step-number">2</span> Your account will be activated immediately
-        </div>
-        <div class="step">
-          <span class="step-number">3</span> You can then log in with your credentials
-        </div>
-      </div>
-      
-      <a href="https://cerebrowar-production.up.railway.app/api/auth/verify-email?token=${token}&confirm=true" class="verify-btn">✓ Verify Email Now</a>
-      
-      <p style="margin-top: 30px; color: #999; font-size: 12px;">If you did not sign up for this account, please ignore this email.</p>
+            const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Your Email | Math-War</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #090d16;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.5) 0px, transparent 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      color: #f8fafc;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.15);
+      text-align: center;
+    }
+    .icon-wrapper {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px auto;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.3);
+    }
+    .icon-wrapper svg {
+      width: 34px;
+      height: 34px;
+      color: #818cf8;
+    }
+    h1 {
+      font-size: 25px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #94a3b8;
+      font-size: 14.5px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .email-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .email-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .email-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+    }
+    .status-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+    .email-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: #38bdf8;
+      word-break: break-all;
+    }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(30, 41, 59, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px 16px;
+      border-radius: 12px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+    .step-text {
+      font-size: 13.5px;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+    .verify-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      border: none;
+      cursor: pointer;
+    }
+    .verify-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    }
+    .verify-btn:active {
+      transform: translateY(0);
+    }
+    .footer-note {
+      margin-top: 24px;
+      color: #64748b;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon-wrapper">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+      </svg>
     </div>
-  </body>
-  </html>
-  `
+    
+    <h1>Verify Your Email</h1>
+    <p class="subtitle">Confirm your email address to complete registration and activate your Math-War account.</p>
+    
+    <div class="email-card">
+      <div class="email-header">
+        <span class="email-label">Email to verify</span>
+        <span class="status-badge">Pending</span>
+      </div>
+      <div class="email-value">${user.email}</div>
+    </div>
+    
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-text">Click the verification button below</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-text">Instant account activation</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-text">Log in with your registered credentials</div>
+      </div>
+    </div>
+    
+    <a href="https://cerebrowar-production.up.railway.app/api/auth/verify-email?token=${token}&confirm=true" class="verify-btn">
+      Verify Email Now
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+      </svg>
+    </a>
+    
+    <p class="footer-note">🔒 Secure Verification Link • If you did not sign up for this account, you can safely ignore this email.</p>
+  </div>
+</body>
+</html>`
             return res.send(html)
 
 
     }
     catch(err){
         console.log("not verify email");
-         const html=`
-    <html>
-    <head>
-      <style>
-        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .container { background: white; padding: 40px; border-radius: 10px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 500px; }
-        h1 { color: #dc3545; margin-bottom: 20px; }
-        p { color: #555; line-height: 1.6; margin: 15px 0; }
-        .error-box { background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; padding: 15px; margin: 20px 0; }
-        .button { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .button:hover { background-color: #0056b3; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <h1>✗ Verification Failed</h1>
-        <div class="error-box">
-          <p><strong>Error:</strong> ${err.message}</p>
-          <p>The verification link is invalid or has expired.</p>
-        </div>
-        <p>Please request a new verification email from your account.</p>
-        <a href="https://cerebrowar-production.up.railway.app/api/auth/resendmail-verification" class="button">Request New Link</a>
-        <p style="margin-top: 30px; color: #999; font-size: 12px;">If you need help, please contact our support team.</p>
-      </div>
-    </body>
-    </html>
-    `
+         const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification Failed | Math-War</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #090d16;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(239, 68, 68, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.5) 0px, transparent 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      color: #f8fafc;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(239, 68, 68, 0.15);
+      text-align: center;
+    }
+    .icon-wrapper {
+      width: 72px;
+      height: 72px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px auto;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.25);
+    }
+    .icon-wrapper svg { width: 36px; height: 36px; color: #ef4444; }
+    h1 { font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .subtitle { color: #94a3b8; font-size: 14.5px; line-height: 1.5; margin-bottom: 24px; }
+    .error-card {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 24px;
+      color: #fca5a5;
+      font-size: 14px;
+      text-align: left;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px 24px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: #ffffff; text-decoration: none;
+      border-radius: 12px; font-weight: 600; font-size: 15px; transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); border: none; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6); }
+    .footer-note { margin-top: 24px; color: #64748b; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon-wrapper">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </div>
+    <h1>Verification Failed</h1>
+    <p class="subtitle">The verification link is invalid, expired, or has already been used.</p>
+    <div class="error-card">
+      <strong>Details:</strong> ${err.message || 'Token verification failed'}
+    </div>
+    <a href="https://cerebrowar-production.up.railway.app/api/auth/resendmail-verification" class="btn">
+      Request New Verification Link
+    </a>
+    <p class="footer-note">If you need help, please contact our support team.</p>
+  </div>
+</body>
+</html>`
     res.send(html)
     }
 
