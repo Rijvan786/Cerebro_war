@@ -1,7 +1,7 @@
 import axios from "axios"
 const api=axios.create({
     baseURL:"https://cerebrowar-production.up.railway.app/",
-    withCredentials:true2
+    withCredentials:true
 })
 
 export async function Register({InstituteName,email,contact,role,password}){
