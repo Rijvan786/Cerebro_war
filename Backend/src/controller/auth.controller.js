@@ -842,7 +842,7 @@ export async function Sendforgetmailcontroller (req,res){
      await Sendmail({
     to: user.email,
     subject: "🔐 Math-War — Reset Your Access Code",
-    text: `Operator ${user.InstituteName},\n\nA password reset has been requested for your Math-War combat profile.\n\nClick the link to reset your access code:\nhttps://cerebro-war.onrender.com/forgetPassword\n\nIf you did not request this, your account is still secure — ignore this message.\n\n— Math-War Command`,
+    text: `Operator ${user.InstituteName},\n\nA password reset has been requested for your Math-War combat profile.\n\nClick the link to reset your access code:\nhttps://cerebrowar-production.up.railway.app/forgetPassword\n\nIf you did not request this, your account is still secure — ignore this message.\n\n— Math-War Command`,
     html: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -882,7 +882,7 @@ export async function Sendforgetmailcontroller (req,res){
       <p class="msg">A request was made to reset the <span>access code</span> for your Math-War combat profile. Click below to set a new password.</p>
       <div class="divider"></div>
       <div class="cta-wrap">
-        <a href="https://cerebro-war.onrender.com/forgetPassword" class="cta">▶ RESET ACCESS CODE</a>
+        <a href="https://cerebrowar-production.up.railway.app/forgetPassword" class="cta">▶ RESET ACCESS CODE</a>
       </div>
       <div class="secure-box">✓ If you did not request this reset, your account is safe. No changes have been made.</div>
     </div>
