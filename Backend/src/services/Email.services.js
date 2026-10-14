@@ -18,7 +18,6 @@ const transporter =nodemailer.createTransport({
    
     
 })
-console.log(Configure.EMAIL_USER,Configure.GOOGLE_CLIENT_ID,Configure.GOOGLE_REFRESH_TOKEN);
 
 transporter.verify().then(()=>{
     console.log("Transporter is Ready to send mail");

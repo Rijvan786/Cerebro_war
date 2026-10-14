@@ -10,14 +10,12 @@ const FLOATS = ['+','−','×','÷','%','π','∑','≠','Δ','∞']
 const Login = () => {
   const [formData, setFormData] = useState({ emailOrUsername: '', password: '' })
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
   const { handleLogin } = useAuth()
-
+  const  Loading =useSelector(state=>state.auth.Loading)
   const handleGoogleLogin = () => {
     window.location.href = 'https://cerebrowar-production.up.railway.app/api/auth/google'
   }
   const navigate = useNavigate()
-  const Loading=useSelector(state=>state.auth.Loading)
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 

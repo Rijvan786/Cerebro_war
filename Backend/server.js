@@ -9,6 +9,6 @@ const startServer = async () => {
 
     await connectDB()
 }
-console.log(Configure.PORT);
+
 
 startServer()
