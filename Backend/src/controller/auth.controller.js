@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 import { Configure } from "../config/config.js"
 import userModel from "../models/auth.model.js"
 import { ValidateAndFormate } from "../validator/contact.validator.js"
-import { Sendmail } from "../services/Email.services.js"
+import {  SendmailDynamic } from "../services/Email.services.js"
 // import { redisClient } from "../config/redis.config.js"  // replace by mongodb 
 import bcrypt from "bcryptjs"
 import BlackListModel from "../models/Blacklist.model.js"
@@ -84,11 +84,10 @@ export async function RegisterController(req,res){
         })
        
         const token=jwt.sign({email:user.email},Configure.JWT_SECRET,{expiresIn:"7d"})
-        await Sendmail({
-            to: email,
-            subject: "⚔️ Welcome to Math-War — Verify Your Account",
-            text: `Welcome Operator ${InstituteName}!\n\nYour Math-War combat profile has been created.\nVerify your email to enter the arena:\n\nhttp://localhost:3000/api/auth/verify-email?token=${token}\n\nThis link expires in 7 days.\n\n— Math-War Command`,
-            html: `<!DOCTYPE html>
+        await SendmailDynamic({
+            email: email,
+            subject: `⚔️ Welcome to Math-War ${InstituteName}  — Verify Your Account`,
+           html: `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -724,11 +723,10 @@ if(!user){
       await user.save();
 
     // Send verification email
-    await Sendmail({
-      to: email,
-      subject: "⚔️ Math-War — New Verification Link",
-      text: `Operator ${user.InstituteName},\n\nA new verification link has been issued for your Math-War account.\n\nVerify here: https://cerebrowar-production.up.railway.app/api/auth/verify-email?token=${emailVerificationToken}\n\nThis link expires in 24 hours.\n\nIf you did not request this, ignore this transmission.\n\n— Math-War Command`,
-      html: `<!DOCTYPE html>
+    await SendmailDynamic({
+      email: email,
+      subject: `⚔️${user.InstituteName} Math-War  — New Verification Link`,
+       html: `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -839,11 +837,10 @@ export async function Sendforgetmailcontroller (req,res){
         })
        }
 
-     await Sendmail({
-    to: user.email,
-    subject: "🔐 Math-War — Reset Your Access Code",
-    text: `Operator ${user.InstituteName},\n\nA password reset has been requested for your Math-War combat profile.\n\nClick the link to reset your access code:\nhttps://cerebrowar-production.up.railway.app/forgetPassword\n\nIf you did not request this, your account is still secure — ignore this message.\n\n— Math-War Command`,
-    html: `<!DOCTYPE html>
+     await SendmailDynamic({
+    email: user.email,
+    subject: `🔐 Math-War — Reset Your Access Code ${user.InstituteName}`,
+      html: `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -971,10 +968,9 @@ export async function GoogleCallback(req, res) {
       })
 
       // Send welcome email to brand-new Google sign-ups
-      await Sendmail({
-        to: email,
-        subject: "⚔️ Welcome to Math-War — Arena Access Granted",
-        text: `Welcome Operator ${displayName}!\n\nYour Math-War combat profile has been created via Google.\nYou can now access the arena at:\nhttps://cerebrowar-production.up.railway.app/\n\nPrepare for battle!\n\n— Math-War Command`,
+      await SendmailDynamic({
+        email: email,
+        subject: `⚔️ Welcome to Math-War — Arena Access Granted ${displayName}`,
         html: `<!DOCTYPE html>
 <html lang="en">
 <head>
