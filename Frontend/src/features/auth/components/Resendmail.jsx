@@ -39,7 +39,7 @@ const Resendmail = () => {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
-            <label className="auth-label">Email</label>
+            <label className="auth-label">EMAIL</label>
             <div className="auth-input-wrap">
               <span className="auth-input-icon">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
