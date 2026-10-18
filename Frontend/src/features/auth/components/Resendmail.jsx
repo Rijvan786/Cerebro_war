@@ -39,7 +39,7 @@ const Resendmail = () => {
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
-            <label className="auth-label">COMM_CHANNEL</label>
+            <label className="auth-label">Email</label>
             <div className="auth-input-wrap">
               <span className="auth-input-icon">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@ const Resendmail = () => {
         </form>
 
         <p className="auth-footer-text">
-          VERIFIED ALREADY? <Link to="/login" className="auth-link">ACCESS_PORTAL</Link>
+          VERIFIED ALREADY? <Link to="/login" className="auth-link">LOGIN</Link>
         </p>
       </motion.div>
     </div>

@@ -106,11 +106,11 @@ export default function Navbar() {
               {/* Info rows */}
               <div className="mw-pd-rows">
                 <div className="mw-pd-row">
-                  <span className="mw-pd-row-label">OPERATOR_ID</span>
+                  <span className="mw-pd-row-label">EMAIL</span>
                   <span className="mw-pd-row-val">{user?.InstituteName ?? '—'}</span>
                 </div>
                 <div className="mw-pd-row">
-                  <span className="mw-pd-row-label">COMM_CHANNEL</span>
+                  <span className="mw-pd-row-label">USERNAME</span>
                   <span className="mw-pd-row-val mw-pd-row-val--sm">{user?.email ?? '—'}</span>
                 </div>
                 <div className="mw-pd-row">

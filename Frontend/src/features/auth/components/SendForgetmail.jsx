@@ -35,12 +35,12 @@ const SendForgetmail = () => {
       <motion.div className="auth-center-card"
         initial={{ opacity:0, y:24, scale:0.97 }} animate={{ opacity:1, y:0, scale:1 }} transition={{ duration:0.55 }}>
 
-        <h2 className="auth-heading">FORGOT_SECRET<span className="auth-heading-cursor">▋</span></h2>
+        <h2 className="auth-heading">FORGOT_PASSWORD  <span className="auth-heading-cursor">▋</span></h2>
         <p className="auth-subtext">Enter your comm channel and we'll transmit a password reset link.</p>
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
-            <label className="auth-label">COMM_CHANNEL</label>
+            <label className="auth-label">EMAIL</label>
             <div className="auth-input-wrap">
               <span className="auth-input-icon">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +61,7 @@ const SendForgetmail = () => {
         </form>
 
         <p className="auth-footer-text">
-          REMEMBERED IT? <Link to="/login" className="auth-link">ACCESS_PORTAL</Link>
+          REMEMBERED IT? <Link to="/login" className="auth-link">LOGIN</Link>
         </p>
       </motion.div>
     </div>

@@ -790,7 +790,7 @@ export async function LoginController(req,res){
    console.log(InstituteName,password);
           const user=await userModel.findOne(
             {$or:[{InstituteName:InstituteName}
-              ,{email:email}
+              ,{email:email}       
               
             ]}).select("+password")
 ;
@@ -930,7 +930,8 @@ export async function Getmecontroller(req,res){
         const userid=req.user.id
         
       const user=await userModel.findOne({
-        _id:userid
+        _id:userid,
+        
       })
    console.log(user);
 
@@ -939,6 +940,7 @@ export async function Getmecontroller(req,res){
         user:{
           InstituteName: user.InstituteName,
           email:user.email,
+          role:user.role
         }
         
       })

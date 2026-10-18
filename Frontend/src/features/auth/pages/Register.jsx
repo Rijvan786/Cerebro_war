@@ -86,14 +86,14 @@ const Register = () => {
           <motion.div className="auth-card"
             initial={{ opacity:0, y:22 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}>
 
-            <h2 className="auth-heading">REGISTER_PORTAL<span className="auth-heading-cursor">▋</span></h2>
+            <h2 className="auth-heading">REGISTER<span className="auth-heading-cursor">▋</span></h2>
             <p className="auth-subtext">Initialize your combat profile to enter the arena.</p>
 
             <form className="auth-form" onSubmit={handleSubmit}>
 
               {/* USERNAME */}
               <div className="auth-field">
-                <label className="auth-label">USERNAME_ID</label>
+                <label className="auth-label">USERNAME</label>
                 <div className="auth-input-wrap">
                   <span className="auth-input-icon">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +108,7 @@ const Register = () => {
 
               {/* EMAIL */}
               <div className="auth-field">
-                <label className="auth-label">COMM_CHANNEL</label>
+                <label className="auth-label">EMAIL</label>
                 <div className="auth-input-wrap">
                   <span className="auth-input-icon">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@ const Register = () => {
 
               {/* CONTACT */}
               <div className="auth-field">
-                <label className="auth-label">CONTACT_SIGNAL</label>
+                <label className="auth-label">CONTACT</label>
                 <div className="auth-phone-wrap">
                   <PhoneInput
                     country={"in"}
@@ -147,7 +147,7 @@ const Register = () => {
 
               {/* ROLE */}
               <div className="auth-field">
-                <label className="auth-label">OPERATOR_ROLE</label>
+                <label className="auth-label">STUDENT_LEVEL</label>
                 <div className="auth-input-wrap">
                   <span className="auth-input-icon">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,7 +163,7 @@ const Register = () => {
 
               {/* PASSWORD */}
               <div className="auth-field">
-                <label className="auth-label">ACCESS_CODE</label>
+                <label className="auth-label">PASSWORD</label>
                 <div className="auth-input-wrap">
                   <span className="auth-input-icon">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,7 +182,7 @@ const Register = () => {
 
               {/* CONFIRM */}
               <div className="auth-field">
-                <label className="auth-label">VERIFY_CODE</label>
+                <label className="auth-label">CONFIRM_PASSWORD</label>
                 <div className="auth-input-wrap">
                   <span className="auth-input-icon">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,7 +200,7 @@ const Register = () => {
               {success && <div className="auth-alert auth-alert-ok">✓ {success}</div>}
 
               <button type="submit" className="auth-btn" disabled={loading}>
-                {loading ? 'INITIALIZING...' : 'DEPLOY_OPERATOR  →'}
+                {loading ? 'REGISTERED' : 'REGISTER  →'}
               </button>
 
               {/* Divider */}

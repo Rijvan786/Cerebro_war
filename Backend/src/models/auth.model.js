@@ -20,7 +20,7 @@ const userSchema=new mongoose.Schema({
          type:String,
     },
     password:{
-          type:String,
+        type:String,
         select:false,
        required:function(){
           return !this.googleId

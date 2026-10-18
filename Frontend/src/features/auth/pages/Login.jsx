@@ -10,6 +10,7 @@ const FLOATS = ['+','−','×','÷','%','π','∑','≠','Δ','∞']
 const Login = () => {
   const [formData, setFormData] = useState({ emailOrUsername: '', password: '' })
   const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const { handleLogin } = useAuth()
   const  Loading =useSelector(state=>state.auth.Loading)
   const handleGoogleLogin = () => {
@@ -19,7 +20,7 @@ const Login = () => {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const onSubmit = (e) => {
+  const onSubmit =async (e) => {
     e.preventDefault()
     try {
       const { emailOrUsername, password } = formData
@@ -27,7 +28,7 @@ const Login = () => {
       const payload = isEmail
         ? { email: emailOrUsername, password, InstituteName: '' }
         : { InstituteName: emailOrUsername, password, email: '' }
-      handleLogin(payload)
+       await  handleLogin(payload)
       navigate('/')
     } catch (err) {
       setError(err.message || 'Unable to login')
@@ -67,13 +68,13 @@ const Login = () => {
           <motion.div className="auth-card"
             initial={{ opacity:0, y:22 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}>
 
-            <h2 className="auth-heading">ACCESS_PORTAL<span className="auth-heading-cursor">▋</span></h2>
+            <h2 className="auth-heading">LOGIN<span className="auth-heading-cursor">▋</span></h2>
             <p className="auth-subtext">Synchronizing neural link for mathematical combat.</p>
 
             <form className="auth-form" onSubmit={onSubmit}>
               {/* OPERATOR_ID */}
               <div className="auth-field">
-                <label className="auth-label">OPERATOR_ID</label>
+                <label className="auth-label">EMAIL</label>
                 <div className="auth-input-wrap">
                   <span className="auth-input-icon">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,16 +89,21 @@ const Login = () => {
 
               {/* ENCRYPTION_KEY */}
               <div className="auth-field">
-                <label className="auth-label">ENCRYPTION_KEY</label>
+                <label className="auth-label">PASSWORD</label>
                 <div className="auth-input-wrap">
                   <span className="auth-input-icon">
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                     </svg>
                   </span>
-                  <input className="auth-input" id="password" name="password" type="password"
-                    autoComplete="current-password" value={formData.password} onChange={handleChange}
+                  <input className="auth-input " id="password" name="password" type={showPassword?"text":"password"}  autoComplete="new-password"
+                   value={formData.password} onChange={handleChange}
                     placeholder="Password" required />
+                    
+                  <button type="button" className="auth-toggle-btn" onClick={() => setShowPassword(v => !v)}>
+                    {showPassword ? 'HIDE' : 'SHOW'}
+                  </button>
+
                 </div>
               </div>
 
@@ -105,13 +111,13 @@ const Login = () => {
                 <label className="auth-check-label">
                   <input type="checkbox" /> REMEMBER_ME
                 </label>
-                <Link to="/forgetmail" className="auth-link">FORGOT_SECRET?</Link>
+                <Link to="/forgetmail" className="auth-link">FORGOT_PASSWORD?</Link>
               </div>
 
               {error && <div className="auth-alert auth-alert-err">⚠ {error}</div>}
 
-              <button type="submit" className="auth-btn" disabled={loading}>
-                {loading ? 'INITIALIZING...' : 'INITIALIZE_LOGIN  →'}
+              <button type="submit" className="auth-btn" disabled={Loading}>
+                {Loading ? 'LOGGED_IN....' : 'LOGIN  →'}
               </button>
             </form>
 
@@ -140,8 +146,8 @@ const Login = () => {
             </button>
 
             <p className="auth-footer-text">
-              NEW OPERATOR?{' '}
-              <Link to="/register" className="auth-link">CREATE_ID</Link>
+              NEW USER?{' '}
+              <Link to="/register" className="auth-link">CREATE_ACCOUNT</Link>
             </p>
           </motion.div>
         </div>

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setUser,setLoading,seterror } from "../auth.slice";
 import { ForgetPassword, Getme, Login, Logout, Register, Resendmail, Sendforgetmail } from "../services/auth.api";
+import { useEffect } from "react";
 
 export function useAuth(){
     const dispatch=useDispatch()
@@ -133,6 +134,7 @@ export function useAuth(){
        }
       
     }
+  
 
     return { 
             handleRegister,
