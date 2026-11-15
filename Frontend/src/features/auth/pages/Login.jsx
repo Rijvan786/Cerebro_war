@@ -14,7 +14,7 @@ const Login = () => {
   const { handleLogin } = useAuth()
   const  Loading =useSelector(state=>state.auth.Loading)
   const handleGoogleLogin = () => {
-    window.location.href = 'https://cerebrowar-production.up.railway.app/api/auth/google'
+    window.location.href = 'https://cerebro-war-1.onrender.com/api/auth/google'
   }
   const navigate = useNavigate()
 

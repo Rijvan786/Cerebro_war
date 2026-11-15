@@ -20,4 +20,4 @@ const MCQQuestionSchema=new mongoose.Schema({
 })
 
 
-const MCQQuestionModel=mongoose.model("MCQQustions",MCQQuestionSchema)
+const MCQQuestionModel=mongoose.model("MCQustions",MCQQuestionSchema)

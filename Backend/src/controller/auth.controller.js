@@ -126,7 +126,7 @@ export async function RegisterController(req,res){
       <p class="msg">Your <span>combat profile</span> has been initialised in the Math-War network. One final step remains before you can enter the arena — verify your email address.</p>
       <div class="divider"></div>
       <div class="cta-wrap">
-        <a  href="https://cerebrowar-production.up.railway.app/api/auth/verify-email?token=${token}" class="cta">▶ VERIFY &amp; ENTER ARENA</a>
+        <a  href="https://cerebro-war-1.onrender.com/api/auth/verify-email?token=${token}" class="cta">▶ VERIFY &amp; ENTER ARENA</a>
       </div>
       <div class="info-box">
         <strong>OPERATOR_ID :</strong> ${InstituteName}<br/>
@@ -253,7 +253,7 @@ export async function Emailverificationcontroller(req,res){
       <div class="info-value">${user.email}</div>
       <span class="badge">✓ Verified Active</span>
     </div>
-    <a href="https://cerebrowar-production.up.railway.app/login" class="btn">
+    <a href="https://cerebro-war-1.onrender.com/login" class="btn">
       Go to Login
       <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
     </a>
@@ -340,7 +340,7 @@ export async function Emailverificationcontroller(req,res){
     </div>
     <h1>Email Verified Successfully!</h1>
     <p class="subtitle">Congratulations! Your email account has been verified. You can now log in and access all features.</p>
-    <a href="https://cerebrowar-production.up.railway.app/login" class="btn">
+    <a href="https://cerebro-war-1.onrender.com/login" class="btn">
       Go to Login
       <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
     </a>
@@ -556,7 +556,7 @@ export async function Emailverificationcontroller(req,res){
       </div>
     </div>
     
-    <a href="https://cerebrowar-production.up.railway.app/api/auth/verify-email?token=${token}&confirm=true" class="verify-btn">
+    <a href="https://cerebro-war-1.onrender.com/api/auth/verify-email?token=${token}&confirm=true" class="verify-btn">
       Verify Email Now
       <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -655,7 +655,7 @@ export async function Emailverificationcontroller(req,res){
     <div class="error-card">
       <strong>Details:</strong> ${err.message || 'Token verification failed'}
     </div>
-    <a href="https://cerebrowar-production.up.railway.app/api/auth/resendmail-verification" class="btn">
+    <a href="https://cerebro-war-1.onrender.com/api/auth/resendmail-verification" class="btn">
       Request New Verification Link
     </a>
     <p class="footer-note">If you need help, please contact our support team.</p>
@@ -764,7 +764,7 @@ if(!user){
       <p class="msg">You requested a new verification link for your <span>Math-War</span> combat profile. Click below to confirm your identity and unlock arena access.</p>
       <div class="divider"></div>
       <div class="cta-wrap">
-        <a href="https://cerebrowar-production.up.railway.app/api/auth/verify-email?token=${emailVerificationToken}" class="cta">▶ VERIFY IDENTITY NOW</a>
+        <a href="https://cerebro-war-1.onrender.com/api/auth/verify-email?token=${emailVerificationToken}" class="cta">▶ VERIFY IDENTITY NOW</a>
       </div>
       <p class="msg" style="font-size:0.8rem;">This link expires in <strong style="color:#f1f5f9;">24 hours</strong>. If you did not request this, ignore this message — your account remains secure.</p>
     </div>
@@ -879,7 +879,7 @@ export async function Sendforgetmailcontroller (req,res){
       <p class="msg">A request was made to reset the <span>access code</span> for your Math-War combat profile. Click below to set a new password.</p>
       <div class="divider"></div>
       <div class="cta-wrap">
-        <a href="https://cerebrowar-production.up.railway.app/forgetPassword" class="cta">▶ RESET ACCESS CODE</a>
+        <a href="https://cerebro-war-1.onrender.com/forgetPassword" class="cta">▶ RESET ACCESS CODE</a>
       </div>
       <div class="secure-box">✓ If you did not request this reset, your account is safe. No changes have been made.</div>
     </div>
@@ -929,10 +929,7 @@ export async function Getmecontroller(req,res){
     try {
         const userid=req.user.id
         
-      const user=await userModel.findOne({
-        _id:userid,
-        
-      })
+      const user=await userModel.findOne({_id:userid})
    console.log(user);
 
       res.status(200).json({
@@ -1014,7 +1011,7 @@ export async function GoogleCallback(req, res) {
       <p class="msg">Your <span>Math-War combat profile</span> has been created via Google OAuth. Arena access has been granted — no further verification required.</p>
       <div class="divider"></div>
       <div class="cta-wrap">
-        <a href="https://cerebrowar-production.up.railway.app/" class="cta">▶ ENTER THE ARENA</a>
+        <a href="https://cerebro-war-1.onrender.com/" class="cta">▶ ENTER THE ARENA</a>
       </div>
       <div class="info-row">
         <strong>OPERATOR_ID :</strong> ${displayName}<br/>
@@ -1044,9 +1041,9 @@ export async function GoogleCallback(req, res) {
       maxAge:   7 * 24 * 60 * 60 * 1000, // 7 days
     })
 
-    res.redirect( "https://cerebrowar-production.up.railway.app/")
+    res.redirect( "https://cerebro-war-1.onrender.com/")
   } catch (err) {
     console.error("GoogleCallback error:", err)
-    res.redirect("https://cerebrowar-production.up.railway.app//register?error=google_failed")
+    res.redirect("https://cerebro-war-1.onrender.com/register?error=google_failed")
   }
 }
