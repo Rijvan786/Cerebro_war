@@ -1,10 +1,8 @@
-import React from 'react';
-import {  RouterProvider } from 'react-router';
-
+import React, { useEffect } from 'react';
+import { RouterProvider } from 'react-router';
 import { router } from './App.route.jsx';
-import { useEffect } from 'react';
 import { useAuth } from '../features/auth/hook/useAuth.js';
-
+import { ToastProvider } from '../features/shared/context/ToastContext.jsx';
 
 function App() {
   const {handleGetme}=useAuth()
@@ -12,7 +10,9 @@ function App() {
     handleGetme()
   },[])
   return (
-         <RouterProvider router ={router}/>
+    <ToastProvider>
+      <RouterProvider router={router}/>
+    </ToastProvider>
   );
 
 }

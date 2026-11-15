@@ -18,7 +18,8 @@ export function useAuth(){
 
        }
        catch(err){
-        dispatch(seterror(`Error occured ${err}`))
+        const message = err?.response?.data?.message || err?.message || 'Registration failed'
+        dispatch(seterror(message))
         throw err
        }
        finally{
@@ -27,15 +28,13 @@ export function useAuth(){
     }
      async function handleLogin({InstituteName,email,password}){
        try{
-     
-
         const data=await Login({InstituteName,email,password})
         dispatch(setUser(data.user))
-        
-
+        return data
        }
        catch(err){
-        dispatch(seterror(`Error occured ${err}`))
+        const message = err?.response?.data?.message || err?.message || 'Invalid Credentials'
+        dispatch(seterror(message))
         throw err
        }
        finally{
@@ -50,7 +49,8 @@ export function useAuth(){
         const data=await Resendmail({email})
         return data
        } catch (error) {
-                  dispatch(seterror(`Error Occured ${error}`))
+                  const message = error?.response?.data?.message || error?.message || 'Failed to resend mail'
+                  dispatch(seterror(message))
                   throw error
        }
 
@@ -69,7 +69,8 @@ export function useAuth(){
 
         
        } catch (error) {
-                  dispatch(seterror(`Error Occured ${error}`))
+                  const message = error?.response?.data?.message || error?.message || 'Failed to send reset email'
+                  dispatch(seterror(message))
                   throw error
        }
 
@@ -87,7 +88,8 @@ export function useAuth(){
            return data
         
        } catch (error) {
-                  dispatch(seterror(`Error Occured ${error}`))
+                  const message = error?.response?.data?.message || error?.message || 'Failed to update password'
+                  dispatch(seterror(message))
                   throw error
        }
 

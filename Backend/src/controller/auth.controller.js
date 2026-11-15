@@ -53,7 +53,7 @@ async function SendToken(res,user,message){
 export async function RegisterController(req,res){
     const {InstituteName,email,contact,role,password}=req.body
      const validateContact=await ValidateAndFormate(contact)
-     console.log(validateContact);
+  
      if(!validateContact){
         return res.status(400).json({
             message:"Invalid Contact number"
@@ -787,7 +787,7 @@ res.status(200).json({
 
 export async function LoginController(req,res){
    const {InstituteName,email,password}=req.body
-   console.log(InstituteName,password);
+  
           const user=await userModel.findOne(
             {$or:[{InstituteName:InstituteName}
               ,{email:email}       
@@ -930,7 +930,7 @@ export async function Getmecontroller(req,res){
         const userid=req.user.id
         
       const user=await userModel.findOne({_id:userid})
-   console.log(user);
+
 
       res.status(200).json({
         message:"User is fetch successfully",

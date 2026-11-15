@@ -16,6 +16,9 @@ const Authslice=createSlice({
         },
             seterror:(state,action)=>{
             state.error=action.payload
+        },
+        clearError:(state)=>{
+            state.error=null
         }
     }
     
@@ -25,6 +28,6 @@ const Authslice=createSlice({
 
 })
 
-export const {setUser,setLoading,seterror}=Authslice.actions
+export const {setUser,setLoading,seterror,clearError}=Authslice.actions
 
 export default Authslice.reducer

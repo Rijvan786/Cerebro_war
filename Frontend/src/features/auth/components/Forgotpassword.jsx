@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
 import { useAuth } from '../hook/useAuth'
+import { useToast } from '../../shared/context/ToastContext'
 import { useSelector } from 'react-redux'
 import Loader from '../../../App/Loader'
 import { motion } from 'framer-motion'
@@ -14,6 +15,7 @@ const Forgotpassword = () => {
   const [loading, setLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
   const { handleForgetPassword } = useAuth()
+  const { showToast } = useToast()
   const Loading = useSelector(state => state.auth.loading)
 
   const handleChange = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
@@ -23,10 +25,14 @@ const Forgotpassword = () => {
     setError(''); setMessage(''); setLoading(true)
     try {
       await handleForgetPassword({ email: form.email, newpassword: form.newpassword })
-      setMessage('Password updated successfully.')
+      const msg = 'Password updated successfully.'
+      setMessage(msg)
+      showToast(msg, 'success')
       setForm(initialForm)
     } catch (err) {
-      setError(err?.message || 'Unable to update the password.')
+      const errText = err?.response?.data?.message || err?.message || 'Unable to update the password.'
+      setError(errText)
+      showToast(errText, 'error')
     } finally { setLoading(false) }
   }
 

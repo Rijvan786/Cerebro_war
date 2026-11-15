@@ -1,0 +1,158 @@
+.top-right-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 999999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 18px;
+    background: rgba(13, 19, 33, 0.96);
+    color: #f8fafc;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 4px solid #10b981;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(16, 185, 129, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    animation: toastSlideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    max-width: 440px;
+    min-width: 300px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    pointer-events: auto;
+}
+
+/* Success Theme */
+.top-right-toast.top-right-toast-success {
+    border-left: 4px solid #10b981;
+    background: rgba(10, 26, 20, 0.96);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(16, 185, 129, 0.22);
+}
+
+.top-right-toast.top-right-toast-success .toast-check-icon {
+    color: #10b981;
+}
+
+.top-right-toast.top-right-toast-success .toast-title {
+    color: #34d399;
+}
+
+/* Error Theme */
+.top-right-toast.top-right-toast-error {
+    border-left: 4px solid #f43f5e;
+    background: rgba(30, 10, 20, 0.96);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(244, 63, 94, 0.25);
+}
+
+.top-right-toast.top-right-toast-error .toast-check-icon {
+    color: #f43f5e;
+}
+
+.top-right-toast.top-right-toast-error .toast-title {
+    color: #fb7185;
+}
+
+/* Info Theme */
+.top-right-toast.top-right-toast-info {
+    border-left: 4px solid #38bdf8;
+    background: rgba(12, 22, 38, 0.96);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(56, 189, 248, 0.25);
+}
+
+.top-right-toast.top-right-toast-info .toast-check-icon {
+    color: #38bdf8;
+}
+
+.top-right-toast.top-right-toast-info .toast-title {
+    color: #38bdf8;
+}
+
+/* Warning Theme */
+.top-right-toast.top-right-toast-warning {
+    border-left: 4px solid #f59e0b;
+    background: rgba(35, 20, 8, 0.96);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(245, 158, 11, 0.25);
+}
+
+.top-right-toast.top-right-toast-warning .toast-check-icon {
+    color: #f59e0b;
+}
+
+.top-right-toast.top-right-toast-warning .toast-title {
+    color: #fbbf24;
+}
+
+.top-right-toast .toast-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1;
+}
+
+.top-right-toast .toast-check-icon {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-right-toast .toast-check-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.top-right-toast .toast-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.top-right-toast .toast-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.top-right-toast .toast-message-text {
+    font-size: 0.90rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #e2e8f0;
+    word-break: break-word;
+}
+
+.top-right-toast .toast-close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    margin-top: -2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.top-right-toast .toast-close-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+@keyframes toastSlideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}

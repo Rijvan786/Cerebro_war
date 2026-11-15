@@ -8,7 +8,7 @@ import BlackListModel from "../models/Blacklist.model.js"
 
 export async function Identifire(req,res,next){
     const token=req.cookies.token
-    console.log(token,"token");
+
     if(!token){
         return res.status(404).json({
             message:"User is not provided Token "

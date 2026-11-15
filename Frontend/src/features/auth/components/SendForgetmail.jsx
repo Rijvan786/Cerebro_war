@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router'
 import { useAuth } from '../hook/useAuth'
+import { useToast } from '../../shared/context/ToastContext'
 import { useSelector } from 'react-redux'
 import Loader from '../../../App/Loader'
 import { motion } from 'framer-motion'
@@ -12,6 +13,7 @@ const SendForgetmail = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const { handlesendForgetmail } = useAuth()
+  const { showToast } = useToast()
   const Loading  = useSelector(state => state.auth.Loading)
 
   const handleSubmit = async (e) => {
@@ -19,9 +21,13 @@ const SendForgetmail = () => {
     setError(''); setMessage(''); setLoading(true); setemail('')
     try {
       await handlesendForgetmail({ email })
-      setMessage('Password reset mail sent. Check your inbox.')
+      const msg = 'Password reset mail sent. Check your inbox.'
+      setMessage(msg)
+      showToast(msg, 'success')
     } catch (err) {
-      setError(err?.message || 'Unable to send reset mail.')
+      const errText = err?.response?.data?.message || err?.message || 'Unable to send reset mail.'
+      setError(errText)
+      showToast(errText, 'error')
     } finally { setLoading(false) }
   }
 

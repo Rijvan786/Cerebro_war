@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useAuth } from '../hook/useAuth'
+import { useToast } from '../../shared/context/ToastContext'
 import Loader from '../../../App/Loader'
 import { motion } from 'framer-motion'
 import PhoneInputPkg from "react-phone-input-2";
@@ -13,6 +14,7 @@ const FLOATS = ['∑','÷','∞','≈','×','π','%','Δ','≠','+']
 
 const Register = () => {
   const navigate = useNavigate()
+  const { showToast } = useToast()
   const [form, setForm] = useState({ InstituteName:'', email:'', contact:'', role:'', password:'', confirmPassword:'' })
   const [success, setSuccess] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -32,8 +34,18 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     seterror(''); setSuccess('')
-    if (form.password !== form.confirmPassword) { seterror('Passwords do not match.'); return }
-    if (form.InstituteName.includes('@')) { seterror("Cannot use '@' in username."); return }
+    if (form.password !== form.confirmPassword) {
+      const msg = 'Passwords do not match.'
+      seterror(msg)
+      showToast(msg, 'error')
+      return
+    }
+    if (form.InstituteName.includes('@')) {
+      const msg = "Cannot use '@' in username."
+      seterror(msg)
+      showToast(msg, 'error')
+      return
+    }
     setLoading(true)
     try {
       const NewForm={
@@ -44,10 +56,14 @@ const Register = () => {
         password:form.password
       }
       await handleRegister(NewForm)
-      setSuccess('Account created! Check your email to verify.')
+      const successMsg = 'Account created! Check your email to verify.'
+      setSuccess(successMsg)
+      showToast(successMsg, 'success')
       navigate('/resendmail')
     } catch (err) {
-      seterror(err.message || 'Something went wrong.')
+      const errorMsg = err?.response?.data?.message || err.message || 'Something went wrong.'
+      seterror(errorMsg)
+      showToast(errorMsg, 'error')
     } finally { setLoading(false) }
   }
    async function handleGoogleLogin(){

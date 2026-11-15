@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../hook/useAuth'
+import { useToast, formatUserFriendlyToast } from '../../shared/context/ToastContext'
 import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 import Loader from '../../../App/Loader'
@@ -12,28 +13,45 @@ const Login = () => {
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const { handleLogin } = useAuth()
-  const  Loading =useSelector(state=>state.auth.Loading)
+  const { showToast } = useToast()
+  const Loading = useSelector(state => state.auth.Loading)
   const handleGoogleLogin = () => {
     window.location.href = 'https://cerebro-war-1.onrender.com/api/auth/google'
   }
   const navigate = useNavigate()
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('error') === 'google_failed') {
+      showToast('Google authentication failed. Please try again.', 'error')
+    }
+  }, [showToast])
+
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const onSubmit =async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+    const { emailOrUsername, password } = formData
+    if (!emailOrUsername || !password) {
+      showToast('Please enter both username/email and password', 'error')
+      return
+    }
+
     try {
-      const { emailOrUsername, password } = formData
       const isEmail = emailOrUsername.includes('@')
       const payload = isEmail
         ? { email: emailOrUsername, password, InstituteName: '' }
         : { InstituteName: emailOrUsername, password, email: '' }
-       await  handleLogin(payload)
+      await handleLogin(payload)
+      showToast('Login successful! Welcome to Cerebro War', 'success')
       navigate('/')
     } catch (err) {
-      setError(err.message || 'Unable to login')
-    } finally {
-     
+      const errorMsg =
+        err?.response?.data?.message || err?.message || 'Invalid Credentials. Please check username/email and password.'
+      const friendly = formatUserFriendlyToast(errorMsg, 'error')
+      setError(friendly.message)
+      showToast(errorMsg, 'error')
     }
   }
  if (Loading) return <Loader />

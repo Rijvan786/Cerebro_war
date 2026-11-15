@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../../auth/hook/useAuth'
+import { useToast } from '../../shared/context/ToastContext'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const { user } = useSelector(state => state.auth)
   const { handleLogout } = useAuth()
+  const { showToast } = useToast()
   const navigate = useNavigate()
   const dropdownRef = useRef(null)
 
@@ -25,8 +27,10 @@ export default function Navbar() {
   const onLogout = async () => {
     try {
       await handleLogout()
+      showToast('Logged out successfully', 'info')
       navigate('/login')
     } catch {
+      showToast('Logged out successfully', 'info')
       navigate('/login')
     }
   }
