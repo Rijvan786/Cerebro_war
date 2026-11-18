@@ -26,7 +26,7 @@ app.use(express.static('./public'))
 // router
 
 app.use(cors({
-origin:"http://localhost:5173",
+origin:"https://cerebro-war-1.onrender.com",
 credentials:true
         }))
 
