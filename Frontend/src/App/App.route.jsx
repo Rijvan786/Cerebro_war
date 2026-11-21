@@ -11,6 +11,7 @@ import Resendmail from "../features/auth/components/Resendmail"
 import SendForgetmail from "../features/auth/components/SendForgetmail"
 import Forgotpassword from "../features/auth/components/Forgotpassword"
 import Protected from "../features/auth/components/Protected"
+import Notfound from "../features/Game/pages/Notfound"
 
 
 
@@ -57,6 +58,13 @@ export const router=createBrowserRouter([
     {
         path:"/forgetpassword",
         element:<Forgotpassword/>
+    },
+    {
+        path:"/Notfound",
+        element:<Notfound/>
+    },
+    {
+        path:"*",
+        element:<Notfound/>
     }
-    
 ])

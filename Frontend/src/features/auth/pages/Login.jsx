@@ -101,7 +101,7 @@ const Login = () => {
                   </span>
                   <input className="auth-input" id="emailOrUsername" name="emailOrUsername" type="text"
                     autoComplete="username" value={formData.emailOrUsername} onChange={handleChange}
-                    placeholder="Username/Email" required />
+                    placeholder="Email" required />
                 </div>
               </div>
 

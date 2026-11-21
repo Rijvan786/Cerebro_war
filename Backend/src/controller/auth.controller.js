@@ -1046,4 +1046,4 @@ export async function GoogleCallback(req, res) {
     console.error("GoogleCallback error:", err)
     res.redirect("https://cerebro-war-1.onrender.com/register?error=google_failed")
   }
-}
+} 
